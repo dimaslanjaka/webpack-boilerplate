@@ -19,3 +19,5 @@ config.json
 # ignore lock files
 yarn.lock
 package-lock.json
+.cache
+source/_posts
