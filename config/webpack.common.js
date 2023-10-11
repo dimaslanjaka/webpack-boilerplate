@@ -1,5 +1,5 @@
 const paths = require('./paths');
-
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -21,6 +21,10 @@ const config = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(txt|md)$/i,
+      //   use: ['raw-loader', 'front-matter-loader']
+      // },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/resource',
@@ -35,7 +39,7 @@ const config = {
         }
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'runtime/images/[hash][ext][query]'
@@ -60,11 +64,12 @@ const config = {
       buffer: require.resolve('buffer/'),
       constants: require.resolve('constants-browserify'),
       stream: require.resolve('stream-browserify')
-    }
+    },
+    alias: paths.aliasAbsolute
   },
   cache: {
     type: 'filesystem',
-    cacheDirectory: paths.tmp
+    cacheDirectory: path.join(process.cwd(), '.cache')
   }
 };
 
