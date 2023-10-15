@@ -1,4 +1,6 @@
-# Hexo with webpack
+# Hexo with webpack - repository moved
+> https://github.com/dimaslanjaka/hexo-webpack
+
 generate static site jekyll/hexo/huge markdown posts using webpack
 
 ## Advantages
