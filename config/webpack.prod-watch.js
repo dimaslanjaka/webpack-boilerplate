@@ -1,8 +1,6 @@
 const { merge } = require('webpack-merge');
 const paths = require('./paths');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const common = require('./webpack.common.js');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const excludePatterns = require('./webpack.excludes');
 const { modifyConfigJson } = require('./utils');
 
@@ -25,21 +23,7 @@ const config = merge(common, {
         exclude: excludePatterns.css
       }
     ]
-  },
-  plugins: [
-    new CleanWebpackPlugin()
-    // analyze webpack bundle
-    // new BundleAnalyzerPlugin({
-    //   // report filename
-    //   reportFilename: 'runtime/index.html',
-    //   // generate report file in output directory
-    //   generateStatsFile: true,
-    //   // auto open browser
-    //   openAnalyzer: false,
-    //   // 'static': generate static html on production
-    //   analyzerMode: 'static'
-    // })
-  ]
+  }
 });
 
 module.exports = merge(config, require('./webpack.entry'));

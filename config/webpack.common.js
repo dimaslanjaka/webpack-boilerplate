@@ -1,12 +1,15 @@
 const paths = require('./paths');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const excludePatterns = require('./webpack.excludes');
+const webpack = require('webpack');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   title: 'Website Manajemen Indonesia',
   template: paths.public + '/index.html', // template file
   filename: 'index.html' // output file
 });
+
 /**
  * @type {import('webpack').Configuration}
  */
@@ -15,16 +18,17 @@ const config = {
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
-    chunkFilename: `runtime/chunk/[name].[chunkhash].js`,
+    chunkFilename: 'runtime/chunk/[name].[chunkhash].js',
     assetModuleFilename: 'runtime/media/[name][hash][ext][query]',
-    publicPath: '/'
+    publicPath: paths.base
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(txt|md)$/i,
-      //   use: ['raw-loader', 'front-matter-loader']
-      // },
+      {
+        test: /\.md$/,
+        use: 'raw-loader'
+      },
+      { test: /\.bck$/, loader: 'ignore-loader' },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/resource',
@@ -47,14 +51,20 @@ const config = {
       },
       {
         test: /\.(t|j|cj|mj)sx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/].concat(excludePatterns.js),
         use: {
           loader: 'babel-loader'
         }
       }
     ]
   },
-  plugins: [htmlPlugin],
+  plugins: [
+    htmlPlugin,
+    // process undefined fix - https://stackoverflow.com/a/65018686/6404439
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    })
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.scss', '.css', '.json', '.otf'],
     fallback: {
