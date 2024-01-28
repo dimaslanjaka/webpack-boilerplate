@@ -112,7 +112,11 @@ const config = {
     '@typescript-eslint/indent': 'off',
     // fix default eslint rules
     // * disable the Enforce sorted import declarations within modules
-    'sort-imports': 'off'
+    'sort-imports': 'off',
+    // disable promise callback async warning
+    'no-async-promise-executor': 'off',
+    // enable triple slash reference
+    '@typescript-eslint/triple-slash-reference': 'off'
   }
 };
 

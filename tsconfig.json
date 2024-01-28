@@ -18,9 +18,11 @@
     "skipLibCheck": true,
     "strict": false,
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
-    "typeRoots": ["./typings", "./node_modules/@types", "./node_modules/nodejs-package-types/typings"],
+    "typeRoots": ["./src/types", "./node_modules/@types", "./node_modules/nodejs-package-types/typings"],
     "paths": {
+      "@root/*": ["./*"],
       "src/*": ["./src/*"],
+      "@post/*": ["./src/posts/*"],
       "@components/*": ["./src/components/*"],
       "@routes/*": ["src/routes/*"],
       "@assets/*": ["./src/assets/*"],
@@ -35,12 +37,11 @@
   },
   "include": [
     "./package.json",
-    "./src",
-    "./src/globals.d.ts",
     "./src/**/*",
-    "src/routes/**/*",
+    "./src/globals.d.ts",
     "./src/**/*.json",
-    "typings"
+    "./routes.json",
+    "./_config.json"
   ],
   "exclude": [
     "**/node_modules/**",
@@ -48,6 +49,12 @@
     "**/dist/**",
     "**/assets/js/core.js",
     "**/assets/js/v*.js",
-    "**/assets/js/gijgo*.js"
+    "**/assets/js/gijgo*.js",
+    "**/packages/**",
+    "**/src/posts/**",
+    "**/src/pages/**",
+    "**/src-posts/**",
+    "**/source/_posts/**",
+    "**/tmp/**"
   ]
 }

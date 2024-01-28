@@ -5,7 +5,7 @@ const path = require('upath');
 const purgecssConfig = {
   content: [
     ...glob.sync(`${path.join(__dirname, 'dist')}/**/*.{js,html}`, { nodir: true }),
-    ...glob.sync(`${path.join(__dirname, 'src')}/**/*.{jsx,tsx}`, { nodir: true }),
+    ...glob.sync(`${path.join(__dirname, 'src')}/**/*.{jsx,tsx}`, { nodir: true })
   ],
   css: glob.sync(`${path.join(__dirname, 'dist')}/**/*.css`, { nodir: true }),
   // enable keyframes remover
@@ -37,7 +37,7 @@ const purgecssConfig = {
         writefile(path.join(__dirname, 'tmp/purgecss/dump-extractor-1.log'), result.join('\n'));
         return result;
       },
-      extensions: ['njk', 'html', 'tsx', 'jsx'],
+      extensions: ['njk', 'html', 'tsx', 'jsx']
     },
     {
       extractor: content => {
@@ -64,9 +64,9 @@ const purgecssConfig = {
         writefile(path.join(__dirname, 'tmp/purgecss/dump-extractor-2.log'), result.join('\n'));
         return result;
       },
-      extensions: ['vue', 'js'],
-    },
-  ],
+      extensions: ['vue', 'js']
+    }
+  ]
 };
 
 module.exports = purgecssConfig;
