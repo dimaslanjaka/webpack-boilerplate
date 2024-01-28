@@ -1,35 +1,19 @@
-import fs from 'fs';
-import path from 'path';
+import gulp from 'gulp';
 import React from 'react';
+import { fs, path } from 'sbg-utility';
+import { obj } from 'through2';
 import paths from '../config/paths';
+import getDistScripts from './getDistScripts';
 import { rConfig } from './routeConfig';
 import { renderStatic } from './template';
-// const devMode = /dev/i.test(process.env.NODE_ENV);
 
-async function generateRouteHtml() {
-  const generatedIndex = paths.build + '/index.html';
+/**
+ * generate route by populating `/routes.json` with template `/{paths.build}/index.html`
+ */
+export async function generateRouteHtml() {
   const routes = rConfig;
-  const regex = /<script[\s\S]*?>[\s\S]*?<\/script>/gi;
+  const { scripts } = getDistScripts();
   const sitemaps: string[] = [];
-  let m: RegExpExecArray | null = null;
-  const scripts = [] as JSX.Element[];
-
-  if (fs.existsSync(generatedIndex)) {
-    const contents = fs.readFileSync(generatedIndex, 'utf-8');
-    // get script bundles
-    while ((m = regex.exec(contents)) !== null) {
-      if (m.index === regex.lastIndex) {
-        regex.lastIndex++;
-      }
-      if (typeof m[0] === 'string' && m[0].length > 0 && !m[0].includes('/page/main.js')) {
-        const srcRegEx = /src=["'](.*?)["']/g;
-        const source = srcRegEx.exec(m[0]);
-        if (source) {
-          scripts.push(<script src={source[1]} key={source[1]} defer={true}></script>);
-        }
-      }
-    }
-  }
 
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i];
@@ -65,4 +49,22 @@ async function generateRouteHtml() {
   fs.writeFileSync(path.join(paths.build, 'sitemap.txt'), uniqueSitemaps.join('\n'));
 }
 
-export { generateRouteHtml };
+/**
+ * generate static html from `{paths.tmp}/static/**\/*.html` with script template from `/{paths.build}/index.html`
+ */
+export function generateRouteHtmlFromTmp() {
+  const { scripts } = getDistScripts(false);
+  const devScript = '<script defer src="/runtime/main.js"></script>';
+  return gulp
+    .src('**/*.html', { cwd: paths.tmp + '/static' })
+    .pipe(
+      obj((file, _encoding, cb) => {
+        if (file.isDirectory() || file.isNull() || file.isStream()) return cb();
+        if (!file.contents) file.contents = Buffer.from('');
+        const contents = file.contents.toString().replace(devScript, scripts.join('\n'));
+        file.contents = Buffer.from(contents);
+        cb(null, file);
+      })
+    )
+    .pipe(gulp.dest(paths.build));
+}
