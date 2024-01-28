@@ -100,5 +100,9 @@
   },
   "typescript.check.npmIsInstalled": false,
   "typescript.format.enable": false,
-  "typescript.preferences.autoImportFileExcludePatterns": ["**/src/posts/**", "**/src-posts/**", "**/source/_posts/**"]
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/src/posts/**",
+    "**/src-posts/**",
+    "**/source/_posts/**"
+  ]
 }
