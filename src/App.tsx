@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       return { Component };
     },
     children: [
+      // index
       {
         index: true,
         async lazy() {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
           return { Component };
         }
       },
+      // 404
       {
         path: '*',
         async lazy() {
