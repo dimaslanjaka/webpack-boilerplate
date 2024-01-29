@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   {
     lazy: async () => {
       const { default: Component } = await import(
-        /* webpackChunkName: "flowbite-with-sidebar-layout" */ '@components/FlowbiteLayout/index'
+        /* webpackChunkName: "app-theme-layout" */ '@components/FlowbiteLayout/index'
       );
       return { Component };
     },
