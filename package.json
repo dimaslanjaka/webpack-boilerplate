@@ -16,7 +16,7 @@
     "start": "cross-env-shell NODE_ENV=development webpackAnalyze=server webpack-dev-server --progress --no-open --mode development --config config/webpack.dev.js \"$@\"",
     "test:dist": "yarn run build:webpack && yarn run build:html && gulp static && gulp page:copy",
     "update": "yarn run update:ncu",
-    "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts",
+    "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts,node-sass,flowbite-react",
     "x": "node config/cli \"$@\"",
     "dev": "webpack-dev-server --progress --no-open --mode development --config config/webpack.dev-prod.js \"$@\"",
     "dev:php": "php -S 127.0.0.1:8888"
@@ -70,7 +70,7 @@
     "html-webpack-plugin": "^5.6.0",
     "lint-staged": "^14.0.1",
     "minimist": "^1.2.8",
-    "node-sass": "^8.0.0",
+    "node-sass": "5.0.0",
     "npm-check-updates": "^16.14.14",
     "postcss": "^8.4.33",
     "postcss-import": "^15.1.0",
@@ -118,9 +118,7 @@
     "safelinkify": "^1.2.2",
     "sort-by": "^1.2.0",
     "stream-browserify": "^3.0.0",
-    "turndown": "^7.1.2",
-    "tw-elements": "^1.1.0",
-    "tw-elements-react": "^1.0.0-alpha2"
+    "turndown": "^7.1.2"
   },
   "engines": {
     "node": "^14"
