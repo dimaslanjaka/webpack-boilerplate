@@ -16,7 +16,6 @@ import { Outlet } from 'react-router-dom';
 import FlowbiteContext from './context/FlowbitContext';
 import { SidebarProvider } from './context/SidebarContext';
 import Header from './header';
-import './index.css';
 import Sidebar from './sidebar';
 
 export interface FlowbiteToastContext {
