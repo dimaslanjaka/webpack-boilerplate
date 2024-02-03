@@ -1,3 +1,4 @@
+import '@assets/css/main.scss';
 import { Fancybox } from '@fancyapps/ui';
 import { Toast } from 'flowbite-react';
 import React, { useState } from 'react';
@@ -17,6 +18,7 @@ import FlowbiteContext from './context/FlowbitContext';
 import { SidebarProvider } from './context/SidebarContext';
 import Header from './header';
 import Sidebar from './sidebar';
+import './style.scss';
 
 export interface FlowbiteToastContext {
   setShowToast: (show: boolean) => void;

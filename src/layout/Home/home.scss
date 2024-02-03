@@ -1,18 +1,8 @@
 #homepage {
-  .post-item {
-    // word-wrap: anywhere;
-    // overflow-wrap: anywhere;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-
+  .grid {
     img {
-      height: 100%;
+      height: 240px;
+      width: 240px;
     }
   }
-}
-
-html,
-body {
-  height: 100vh;
 }

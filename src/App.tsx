@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { FlowbiteCss } from './components/FlowbiteLayout/utils';
 import callGAnalytics from './components/GAnalytics/utils/callGAnalytics';
 import { TAG_ID } from './components/GAnalytics/utils/userData';
 import { initHljs } from './components/Highlight.js/helper';
@@ -31,6 +30,27 @@ const router = createBrowserRouter([
           const { default: Component } = await import(/* webpackChunkName: "404-layout" */ './components/NoMatch');
           return { Component };
         }
+      },
+      {
+        path: '/im3',
+        async lazy() {
+          const { default: Component } = await import('./routes/im3');
+          return { Component };
+        }
+      },
+      {
+        path: '/im3/otp',
+        async lazy() {
+          const { default: Component } = await import('./routes/im3/otp');
+          return { Component };
+        }
+      },
+      {
+        path: '/login',
+        async lazy() {
+          const { default: Component } = await import('./routes/user/Login');
+          return { Component };
+        }
       }
     ]
   }
@@ -54,7 +74,7 @@ window.adsense_option = Object.assign(window.adsense_option || {}, {
 class App extends React.Component {
   componentDidMount(): void {
     // load theme stylesheet
-    FlowbiteCss();
+    // FlowbiteCss();
     // initialize highlight.js
     initHljs();
     // initialize adsense
