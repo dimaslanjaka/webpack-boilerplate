@@ -1,5 +1,8 @@
-const { path } = require('sbg-utility');
+const path = require('upath');
 
+/**
+ * @type {Record<string,string>}
+ */
 const alias = {
   '*': '.',
   '@utils': './src/utils',

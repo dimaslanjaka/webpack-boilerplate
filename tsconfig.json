@@ -1,9 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "compilerOptions": {
+      "esModuleInterop": true
+    }
+  },
   "compilerOptions": {
     "allowJs": true,
-    "module": "CommonJS",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "module": "ES2020",
+    "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
@@ -11,8 +24,6 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -25,20 +36,46 @@
     "sourceMap": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@root/*": ["./*"],
-      "src/*": ["./src/*"],
-      "@post/*": ["./src/posts/*"],
-      "@components/*": ["./src/components/*"],
-      "@routes/*": ["src/routes/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@project": ["./src/project"]
+      "@root/*": [
+        "./*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+      "@post/*": [
+        "./src/posts/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@routes/*": [
+        "src/routes/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@project": [
+        "./src/project"
+      ]
     },
     "outDir": "dist"
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.cjs", "**/*.mjs", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.ts",
+    "**/*.tsx",
+    "./config/**/*"
+, "_config.gen.cjs"  ]
 }
