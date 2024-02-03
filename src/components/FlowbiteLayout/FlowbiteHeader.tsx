@@ -1,4 +1,4 @@
-import { projectConfig } from '@root/src/project';
+import { projectConfig } from '@src/project';
 import { Navbar } from 'flowbite-react';
 import React, { FC } from 'react';
 import { BiMoon, BiSun } from 'react-icons/bi';
@@ -6,7 +6,7 @@ import Image from '../Image';
 import { useSidebarContext } from './context/SidebarContext';
 import { getModeByLocalstorage, setMode, toggleDarkMode } from './utils';
 
-const Header: FC<Record<string, never>> = function () {
+const FlowbiteHeader: FC<Record<string, never>> = function () {
   const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } = useSidebarContext();
   const [themeMode, setThemeMode] = React.useState<'dark' | 'light'>(getModeByLocalstorage());
   const isMounted = React.useRef(false); // unmounted by default
@@ -51,7 +51,7 @@ const Header: FC<Record<string, never>> = function () {
           </button>
         )}
         <Navbar.Brand href="/">
-          <Image alt="Flowbite logo" height="24" src={projectConfig.paths.base + 'favicon.ico'} width="24" />
+          <Image alt="Flowbite logo" height="24" src={projectConfig['paths'].base + 'favicon.ico'} width="24" />
           <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
             {projectConfig.title}
           </span>
@@ -70,20 +70,22 @@ const Header: FC<Record<string, never>> = function () {
             {themeMode == 'dark' ? <BiMoon className="h-5 w-5" /> : <BiSun className="h-5 w-5" />}
           </button>
         </div>
-        <Navbar.Collapse>
-          {Object.keys(projectConfig.nav_top).map((name, index) => {
-            const props = {} as Record<string, any>;
-            if (index === 0) props.active = true;
-            return (
-              <Navbar.Link href={projectConfig.nav_top[name]} key={name + index} {...props}>
-                {name}
-              </Navbar.Link>
-            );
-          })}
-        </Navbar.Collapse>
+        {projectConfig['nav_top'] && (
+          <Navbar.Collapse>
+            {Object.keys(projectConfig['nav_top']).map((name, index) => {
+              const props = {} as Record<string, any>;
+              if (index === 0) props['active'] = true;
+              return (
+                <Navbar.Link href={projectConfig['nav_top'][name]} key={name + index} {...props}>
+                  {name}
+                </Navbar.Link>
+              );
+            })}
+          </Navbar.Collapse>
+        )}
       </Navbar>
     </header>
   );
 };
 
-export default Header;
+export default FlowbiteHeader;

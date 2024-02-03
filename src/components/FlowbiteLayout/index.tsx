@@ -14,9 +14,9 @@ import {
   HiViewBoards
 } from 'react-icons/hi';
 import { Outlet } from 'react-router-dom';
+import FlowbiteHeader from './FlowbiteHeader';
 import FlowbiteContext from './context/FlowbitContext';
 import { SidebarProvider } from './context/SidebarContext';
-import Header from './header';
 import Sidebar from './sidebar';
 import './style.scss';
 
@@ -55,9 +55,9 @@ export function FlowbiteLayout(props?: { children: JSX.Element | React.ReactNode
     <div id="FlowbiteLayout">
       <FlowbiteContext>
         <SidebarProvider>
-          <Header />
+          <FlowbiteHeader />
           <div id="flowbite-main-content">
-            {props.children ? (
+            {props && props.children ? (
               props.children
             ) : (
               <div className="flex flex-col md:flex-row dark:bg-gray-900">
@@ -90,7 +90,7 @@ export function FlowbiteLayout(props?: { children: JSX.Element | React.ReactNode
   );
 }
 
-function ActualSidebar(): JSX.Element {
+export function ActualSidebar(): JSX.Element {
   return (
     <Sidebar>
       <Sidebar.Items>

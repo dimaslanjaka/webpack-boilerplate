@@ -4,6 +4,9 @@ import { createRoot } from 'react-dom/client';
 import { Flowbite } from 'flowbite-react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import { ActualSidebar } from './components/FlowbiteLayout';
+import FlowbiteHeader from './components/FlowbiteLayout/FlowbiteHeader';
+import FlowbiteContext from './components/FlowbiteLayout/context/FlowbitContext';
 import { SidebarProvider } from './components/FlowbiteLayout/context/SidebarContext';
 import theme from './flowbite-theme';
 import './index.css';
@@ -20,18 +23,25 @@ const root = createRoot(container);
 root.render(
   <StrictMode>
     <Flowbite theme={{ theme }}>
-      <SidebarProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* <Route path="/" element={<DashboardPage />} index />
-          <Route path="/authentication/sign-in" element={<SignInPage />} />
-          <Route path="/authentication/sign-up" element={<SignUpPage />} />
-          <Route path="/e-commerce/products" element={<EcommerceProductsPage />} />
-          <Route path="/users/list" element={<UserListPage />} /> */}
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
-      </SidebarProvider>
+      <FlowbiteContext>
+        <SidebarProvider>
+          <FlowbiteHeader />
+          <BrowserRouter>
+            <div id="flowbite-main-content">
+              <div className="flex flex-col md:flex-row dark:bg-gray-900">
+                <div className="order-2 mx-4 mt-4 mb-24 flex-[1_0_16rem]" id="router-wrapper">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                  </Routes>
+                </div>
+                <div className="order-1">
+                  <ActualSidebar />
+                </div>
+              </div>
+            </div>
+          </BrowserRouter>
+        </SidebarProvider>
+      </FlowbiteContext>
     </Flowbite>
   </StrictMode>
 );
