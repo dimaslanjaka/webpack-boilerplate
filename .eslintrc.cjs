@@ -1,4 +1,5 @@
-const prettier = require('./.prettierrc.json');
+// const prettier = require('./.prettierrc.json');
+import prettier from './.prettierrc.json';
 
 /**
  * @type {import('eslint').ESLint.ConfigData}
@@ -116,7 +117,9 @@ const config = {
     // disable promise callback async warning
     'no-async-promise-executor': 'off',
     // enable triple slash reference
-    '@typescript-eslint/triple-slash-reference': 'off'
+    '@typescript-eslint/triple-slash-reference': 'off',
+    "react/jsx-uses-react": "on",
+    "react/react-in-jsx-scope": "on"
   }
 };
 

@@ -1,24 +1,10 @@
-# malfunction keyboard
-# 5 6 ^ %
-
-/node_modules
-!/page-source/node_modules/.gitignore
-/build
-/page
-tmp
-config.json
-*.log
+dist
+node_modules
+*.tsbuildinfo
+yarn-error.log
+.yarn/cache
 .env
-/dist
-_config.json
-
-# ignore yarn files except patterns
-**/.yarn/*
-!**/.yarn/releases
-!**/.yarn/plugins
-
-# ignore lock files
+tmp/
+.yarn/*gz
+.env-bak
 yarn.lock
-package-lock.json
-.cache
-source/_posts

@@ -1,24 +1,32 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
-    "jsx": "react",
-    "baseUrl": "./",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "target": "ES5",
-    "esModuleInterop": true,
-    "outDir": "tmp/tsc",
-    "checkJs": false,
-    "composite": false,
-    "sourceMap": true,
     "allowJs": true,
+    "module": "CommonJS",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "strict": false,
-    "lib": ["DOM", "DOM.Iterable", "ES2020"],
-    "typeRoots": ["./src/types", "./node_modules/@types", "./node_modules/nodejs-package-types/typings"],
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": ["vite/client"],
+    "baseUrl": ".",
     "paths": {
       "@root/*": ["./*"],
       "src/*": ["./src/*"],
@@ -29,32 +37,8 @@
       "@utils/*": ["./src/utils/*"],
       "@project": ["./src/project"]
     },
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      }
-    ]
+    "outDir": "dist"
   },
-  "include": [
-    "./package.json",
-    "./src/**/*",
-    "./src/globals.d.ts",
-    "./src/**/*.json",
-    "./routes.json",
-    "./_config.json"
-  ],
-  "exclude": [
-    "**/node_modules/**",
-    "./page/**/*",
-    "**/dist/**",
-    "**/assets/js/core.js",
-    "**/assets/js/v*.js",
-    "**/assets/js/gijgo*.js",
-    "**/packages/**",
-    "**/src/posts/**",
-    "**/src/pages/**",
-    "**/src-posts/**",
-    "**/source/_posts/**",
-    "**/tmp/**"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["**/*.cjs", "**/*.mjs", "**/*.ts", "**/*.tsx"]
 }

@@ -1,137 +1,118 @@
 {
-  "name": "spring-frontend",
+  "type": "module",
+  "name": "flowbite-react-admin-dashboard",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "private": true,
-  "scripts": {
-    "analyze": "webpack --profile --mode production",
-    "build": "rm -rf dist && run-s \"build:**\" && gulp build",
-    "build:webpack": "webpack --progress --mode production --config config/webpack.prod.js",
-    "clean": "rm -rf dist tmp",
-    "clean:build": "yarn run clean && yarn run build",
-    "php": "php -S 127.0.0.1:4000",
-    "prod": "cd page && yarn install --omit=dev --production",
-    "prod:update": "cd page && npx npm-check-updates -u && yarn install --omit=dev --production",
-    "start": "cross-env-shell NODE_ENV=development webpackAnalyze=server webpack-dev-server --progress --no-open --mode development --config config/webpack.dev.js \"$@\"",
-    "test:dist": "yarn run build:webpack && yarn run build:html && gulp static && gulp page:copy",
-    "update": "yarn run update:ncu",
-    "update:ncu": "npx npm-check-updates --enginesNode -u -x chalk,jsdom,deepmerge-ts,node-sass,flowbite-react",
-    "x": "node config/cli \"$@\"",
-    "dev": "webpack-dev-server --progress --no-open --mode development --config config/webpack.dev-prod.js \"$@\"",
-    "dev:php": "php -S 127.0.0.1:8888"
-  },
-  "author": "Dimas Lanjaka <dimaslanjaka@gmail.com> (http://webmanajemen.com)",
-  "license": "ISC",
+  "descrption": "flowbite-react admin dashboard",
+  "homepage": "https://github.com/themesberg/flowbite-react-admin-dashboard",
+  "bugs": "https://github.com/themesberg/flowbite-react-admin-dashboard/issues",
+  "license": "UNLICENSED",
+  "author": "Conner Davis <cdavis@scu.edu>",
   "repository": {
-    "url": "https://github.com/dimaslanjaka/page.git"
+    "type": "git",
+    "url": "https://github.com/themesberg/flowbite-react-admin-dashboard.git"
   },
-  "devDependencies": {
-    "@babel/core": "^7.23.9",
-    "@babel/preset-env": "^7.23.9",
-    "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
-    "@types/bluebird": "^3",
-    "@types/bluebird-global": "^3.5.18",
-    "@types/bootstrap": "^5",
-    "@types/crypto-js": "^4",
-    "@types/eslint": "^8",
-    "@types/fs-extra": "^11",
-    "@types/gapi": "^0.0.47",
-    "@types/gapi.auth2": "^0.0.60",
-    "@types/gapi.client.analytics-v3": "^0.0.4",
-    "@types/google.accounts": "^0.0.14",
-    "@types/gulp": "^4",
-    "@types/minimist": "^1",
-    "@types/node": "^20.11.16",
-    "@types/node-sass": "^4.11.7",
-    "@types/prettier": "^3",
-    "@types/prop-types": "^15",
-    "@types/react": "^18.2.52",
-    "@types/react-dom": "^18.2.18",
-    "@types/webpack-bundle-analyzer": "^4",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "babel-loader": "^9.1.3",
-    "babel-plugin-module-resolver": "^5.0.0",
-    "binary-collections": "^2.0.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "cross-env": "^7.0.3",
-    "css-loader": "^6.10.0",
-    "depcheck": "^1.4.7",
-    "dotenv": "^16.4.1",
-    "eslint": "^8.50.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "fs-extra": "^11.1.1",
-    "git-command-helper": "^2.0.2",
-    "glob": "^10.3.10",
-    "html-webpack-plugin": "^5.6.0",
-    "lint-staged": "^14.0.1",
-    "minimist": "^1.2.8",
-    "node-sass": "5.0.0",
-    "npm-check-updates": "^16.14.14",
-    "postcss": "^8.4.33",
-    "postcss-import": "^15.1.0",
-    "postcss-loader": "^7.3.3",
-    "postcss-preset-env": "^9.3.0",
-    "prettier": "^3.2.4",
-    "process": "^0.11.10",
-    "purgecss": "^5.0.0",
-    "sass-loader": "^12.6.0",
-    "sbg-utility": "^1.1.6",
-    "style-loader": "^3.3.4",
-    "tailwindcss": "^3.4.1",
-    "through2": "^4.0.2",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "^5.2.2",
-    "upath": "^2.0.1",
-    "webpack": "^5.90.1",
-    "webpack-bundle-analyzer": "^4.10.1",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "webpack-merge": "^5.10.0"
+  "scripts": {
+    "build": "yarn typecheck && vite build",
+    "dev": "vite --host",
+    "start": "vite --host",
+    "format": "prettier --check --ignore-path .gitignore --write .",
+    "lint": "eslint --ignore-path .gitignore .",
+    "preview": "vite preview --host",
+    "typecheck": "tsc"
+  },
+  "engines": {
+    "node": ">= 16",
+    "npm": ">= 8",
+    "yarn": ">= 1"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.33",
-    "@tailwindcss/typography": "^0.5.10",
+    "apexcharts": "^3.45.2",
     "axios": "^1.6.7",
     "axios-cache-interceptor": "^1.5.1",
-    "bluebird": "^3.7.2",
-    "buffer": "^6.0.3",
-    "constants-browserify": "^1.0.0",
-    "crypto-browserify": "^3.12.0",
+    "classnames": "^2.5.1",
     "flowbite": "^2.2.1",
-    "flowbite-react": "^0.5.0",
-    "localforage": "^1.10.0",
-    "moment": "^2.30.1",
-    "moment-timezone": "^0.5.44",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
+    "flowbite-react": "^0.7.2",
+    "react-apexcharts": "^1.4.1",
+    "react-icons": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.52",
+    "@types/react-dom": "^18.2.18",
+    "@types/sortablejs": "^1.15.7",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-tailwindcss": "^3.14.1",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
+    "react-router": "^6.22.0",
     "react-router-dom": "^6.22.0",
-    "safelinkify": "^1.2.2",
-    "stream-browserify": "^3.0.0"
+    "sass": "^1.70.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vitest": "^1.2.2"
   },
-  "engines": {
-    "node": "^14"
+  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
-  "resolutions": {
-    "typescript": "4.9.5",
-    "jsdom": "^21",
-    "@types/node": "^14",
-    "deepmerge-ts": "^4",
-    "@types/hexo": "https://github.com/dimaslanjaka/hexo/raw/638a594/releases/hexo.tgz",
-    "hexo-log": "https://github.com/dimaslanjaka/hexo/raw/638a594/releases/hexo-log.tgz",
-    "hexo-util": "https://github.com/dimaslanjaka/hexo/raw/638a594/releases/hexo-util.tgz",
-    "instant-indexing": "https://github.com/dimaslanjaka/static-blog-generator/raw/3d352a6c2fa9217d57b8e049c40563c0a2ab41de/packages/instant-indexing/release/instant-indexing.tgz",
-    "nodejs-package-types": "https://github.com/dimaslanjaka/nodejs-package-types/raw/a2e797bc27975cba20ef4c87547841e6341bfcf4/release/nodejs-package-types.tgz",
-    "hexo-post-parser": "https://github.com/dimaslanjaka/hexo-post-parser/raw/0f213ec/release/hexo-post-parser.tgz",
-    "cross-spawn": "https://github.com/dimaslanjaka/node-cross-spawn/raw/ff4b648/release/cross-spawn.tgz"
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/strict",
+      "plugin:jsx-a11y/recommended",
+      "plugin:prettier/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:tailwindcss/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+      "@typescript-eslint/consistent-type-imports": "error",
+      "react/react-in-jsx-scope": "off",
+      "react/no-unescaped-entities": "off",
+      "tailwindcss/classnames-order": [
+        "error",
+        {
+          "callees": [
+            "classnames"
+          ],
+          "config": "tailwind.config.cjs"
+        }
+      ],
+      "tailwindcss/no-custom-classname": [
+        "error",
+        {
+          "config": "tailwind.config.cjs"
+        }
+      ]
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
   },
-  "packageManager": "yarn@3.7.0"
+  "packageManager": "yarn@3.8.0"
 }
