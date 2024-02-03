@@ -1,5 +1,4 @@
-// const prettier = require('./.prettierrc.json');
-import prettier from './.prettierrc.json';
+const prettier = require('./.prettierrc.json');
 
 /**
  * @type {import('eslint').ESLint.ConfigData}
@@ -51,7 +50,7 @@ const config = {
   // override rules for js files
   overrides: [
     {
-      files: ['*.js'],
+      files: ['*.js', '*.cjs'],
       rules: {
         // disable require warning on js files
         '@typescript-eslint/no-var-requires': 'off',
@@ -117,9 +116,7 @@ const config = {
     // disable promise callback async warning
     'no-async-promise-executor': 'off',
     // enable triple slash reference
-    '@typescript-eslint/triple-slash-reference': 'off',
-    "react/jsx-uses-react": "on",
-    "react/react-in-jsx-scope": "on"
+    '@typescript-eslint/triple-slash-reference': 'off'
   }
 };
 
