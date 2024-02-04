@@ -8,3 +8,4 @@ tmp/
 .yarn/*gz
 .env-bak
 yarn.lock
+_env.json

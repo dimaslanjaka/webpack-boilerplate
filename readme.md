@@ -1,10 +1,31 @@
-# webpack boilerplate
+# Tailwind Frontend Project
 
-My webpack boilerplate for building static site
+## Framework used
+- vite
+- reactjs
+- tailwind
+- flowbite
+- flowbite-react
 
-## flowbite-react issues
-- https://github.com/themesberg/flowbite-react/issues/1065
+## Installation
 
-## Sample projects
-- https://github.com/dimaslanjaka/hexo-webpack
+### create `.env` file
 
+```properties
+# this is your backend used by ajax
+BASE_API=http://yourdomain.com
+```
+
+### run env builder
+
+generate `_env.json` by
+
+```bash
+node -r dotenv/config --es-module-specifier-resolution=node --no-warnings _env.cjs
+```
+
+### Start server
+
+```bash
+yarn start
+```
