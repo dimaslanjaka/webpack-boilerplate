@@ -31,6 +31,15 @@ export default function Login() {
           iconClassName: 'user'
         });
         setShowToast(true);
+        if (!data.error) location.pathname = '/dashboard';
+      })
+      .catch(e => {
+        setToastInfo({
+          title: 'Koneksi Gagal',
+          description: e.message,
+          iconClassName: 'user'
+        });
+        setShowToast(true);
       });
   };
 
