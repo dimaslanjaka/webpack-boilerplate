@@ -1,9 +1,9 @@
-import '@assets/css/main.scss';
 import { Flowbite } from 'flowbite-react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import './assets/css/main.scss';
 import { ActualSidebar } from './components/FlowbiteLayout';
 import FlowbiteHeader from './components/FlowbiteLayout/FlowbiteHeader';
 import FlowbiteContext from './components/FlowbiteLayout/context/FlowbitContext';

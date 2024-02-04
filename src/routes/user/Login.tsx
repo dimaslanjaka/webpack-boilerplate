@@ -1,15 +1,26 @@
 /// <reference path='../../types/customHtmlAttributes.d.ts' />
 
+import FlowbiteToast from '@root/src/components/FlowbiteLayout/FlowbiteToast';
 import { saveForms } from '@root/src/components/formSaver';
 import { formDataToJSON } from '@root/src/utils/form';
 import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Button, Label, Tabs, TextInput } from 'flowbite-react';
-import { FormEvent, useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { HiUserCircle } from 'react-icons/hi';
 
 export default function Login() {
-  // const { setShowToast, setToastInfo } = useOutletContext<FlowbiteToastContext>();
+  // toast indicator
+  const [showToast, setShowToast] = useState(false);
+  // toast info
+  const [toastInfo, setToastInfo] = useState({
+    // default title from parent
+    title: 'parent: toast title',
+    // default description from parent
+    description: 'parent: toast description',
+    // default icon class name from parent
+    iconClassName: 'user'
+  });
   useEffect(() => {
     saveForms();
   }, []);
@@ -32,8 +43,13 @@ export default function Login() {
               fetch(url)
                 .then(res => res.json())
                 .then((data: AjaxResponse) => {
-                  // setToastInfo({ title: data.error ? 'Gagal' : 'Sukses', description: data.message });
-                  // setShowToast(true);
+                  // set new toast info
+                  setToastInfo({
+                    title: data.error ? 'Gagal' : 'Sukses',
+                    description: data.message,
+                    iconClassName: 'user'
+                  });
+                  setShowToast(true);
                 });
             }}
           >
@@ -68,6 +84,13 @@ export default function Login() {
           </form>
         </Tabs.Item>
       </Tabs>
+      <FlowbiteToast
+        showToast={showToast}
+        handler={setShowToast}
+        title={toastInfo.title}
+        description={toastInfo.description}
+        iconClassName={toastInfo.iconClassName}
+      />
     </main>
   );
 }

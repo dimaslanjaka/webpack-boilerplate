@@ -25,6 +25,8 @@ export interface FlowbiteToastContext {
 }
 
 export function FlowbiteLayout(props?: { children: JSX.Element | React.ReactNode }) {
+  // put on element call the toast
+  // const { setShowToast, setToastInfo } = useOutletContext<FlowbiteToastContext>();
   const [showToast, setShowToast] = useState(false);
   const [toastInfo, setToastInfo] = useState({ title: 'toast title', description: 'toast description' });
 
