@@ -6,7 +6,7 @@ export default function NoMatch() {
       {location.port == '4000' && (
         <blockquote>
           <p>
-            Please register the route for <b>{location.pathname}</b> at <b>src/App.tsx</b>
+            Please register the route for <b>{location.pathname}</b> at <b>src/App.tsx</b> or <b>src/index.tsx</b>
           </p>
           <p>
             <a
