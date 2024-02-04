@@ -9,14 +9,7 @@ export interface AjaxResponse {
 export default class springUtils {
   private static origin: URL;
   public static getOrigin() {
-    if (typeof this.origin === 'undefined')
-      if (location.port === '4000') {
-        // local
-        this.origin = new URL('http://localhost:8080');
-      } else {
-        // production
-        this.origin = new URL(env.BASE_API);
-      }
+    if (typeof this.origin === 'undefined') this.origin = new URL(env.BASE_API);
     return this.origin;
   }
   public static checkLogin(redirect = true) {
