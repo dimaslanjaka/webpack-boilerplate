@@ -13,9 +13,19 @@ interface FlowbiteToastProps {
   description?: string;
   /** fontawesome classname without fa- */
   iconClassName?: string;
+  /** auto hide */
+  autoHide?: boolean;
 }
 
 const FlowbiteToast: React.FC<FlowbiteToastProps> = props => {
+  React.useEffect(() => {
+    if (props.showToast && props.autoHide) {
+      // auto hide toast
+      setTimeout(() => {
+        props.handler(false);
+      }, 3000);
+    }
+  });
   return (
     props.showToast && (
       <Toast className="absolute top-5 end-5 z-50 shadow">
