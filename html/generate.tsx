@@ -1,8 +1,7 @@
 import gulp from 'gulp';
-import React from 'react';
 import { fs, path } from 'sbg-utility';
 import { obj } from 'through2';
-import paths from '../config/paths';
+import paths from '../config/paths.cjs';
 import getDistScripts from './getDistScripts';
 import { rConfig } from './routeConfig';
 import { renderStatic } from './template';

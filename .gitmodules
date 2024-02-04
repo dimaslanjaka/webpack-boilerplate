@@ -1,4 +1,0 @@
-[submodule "packages/smartform"]
-	path = packages/smartform
-	url = https://github.com/dimaslanjaka/smartform.git
-	branch = compiler

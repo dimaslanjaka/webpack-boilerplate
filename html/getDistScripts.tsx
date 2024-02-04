@@ -1,6 +1,5 @@
 import { fs } from 'sbg-utility';
-import paths from '../config/paths';
-import React from 'react';
+import paths from '../config/paths.cjs';
 
 interface ReturnJSX {
   scripts: JSX.Element[];

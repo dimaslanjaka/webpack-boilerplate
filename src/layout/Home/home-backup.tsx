@@ -1,8 +1,8 @@
 /// <reference path='../../types/image-jpg.d.ts' />
 
 import Image from '@components/Image';
-import { projectConfig, routeConfig } from '@project';
 import { randomStr } from '@root/src/utils';
+import { projectConfig, routeConfig } from '@src/project';
 import { Label, Spinner, TextInput } from 'flowbite-react';
 import moment from 'moment-timezone';
 import React from 'react';

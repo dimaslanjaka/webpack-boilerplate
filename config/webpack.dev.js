@@ -1,5 +1,5 @@
 const { merge } = require('webpack-merge');
-const paths = require('./paths');
+const paths = require('./paths.cjs');
 const common = require('./webpack.common.js');
 const cli = require('./cli');
 const excludePatterns = require('./webpack.excludes');

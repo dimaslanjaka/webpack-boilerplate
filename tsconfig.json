@@ -5,7 +5,8 @@
     "esm": true,
     "experimentalSpecifierResolution": "node",
     "compilerOptions": {
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "resolveJsonModule": true
     }
   },
   "compilerOptions": {
@@ -13,7 +14,8 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext"
+      "ESNext",
+      "ES2020"
     ],
     "module": "ES2020",
     "moduleResolution": "Node",
@@ -39,6 +41,7 @@
     "types": [
       "vite/client"
     ],
+    "typeRoots": ["./src/types", "./node_modules/@types", "./node_modules/nodejs-package-types/typings", "./node_modules"],
     "baseUrl": ".",
     "paths": {
       "@root/*": [

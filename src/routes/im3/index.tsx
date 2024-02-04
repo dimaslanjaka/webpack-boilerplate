@@ -1,7 +1,8 @@
 import springUtils from '@root/src/utils/springUtils';
 import React from 'react';
 
-class im3Index extends React.Component<any, any> {
+export class Im3Index extends React.Component<any, any> {
+  static displayName: string;
   componentDidMount(): void {
     springUtils.checkLogin();
   }
@@ -39,4 +40,9 @@ class im3Index extends React.Component<any, any> {
   }
 }
 
-export default im3Index;
+export default Im3Index;
+
+// react-router-dom lazy loading
+export const Component = Im3Index;
+// If you want to customize the component display name in React dev tools:
+Component.displayName = 'IM3 Index';

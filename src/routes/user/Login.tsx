@@ -1,142 +1,95 @@
-import { FlowbiteToastContext } from '@root/src/components/FlowbiteLayout';
-import { Button, Label, TextInput } from 'flowbite-react';
-import React from 'react';
-import { useOutletContext } from 'react-router-dom';
+/// <reference path='../../types/customHtmlAttributes.d.ts' />
+
+import { saveForms } from '@root/src/components/formSaver';
+import { formDataToJSON } from '@root/src/utils/form';
+import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
+import axios, { AxiosRequestConfig } from 'axios';
+import { Button, Label, Tabs, TextInput } from 'flowbite-react';
+import { FormEvent, useEffect } from 'react';
+import { HiUserCircle } from 'react-icons/hi';
 
 export default function Login() {
-  const { setShowToast, setToastInfo } = useOutletContext<FlowbiteToastContext>();
+  // const { setShowToast, setToastInfo } = useOutletContext<FlowbiteToastContext>();
+  useEffect(() => {
+    saveForms();
+  }, []);
+
   return (
     <main className="space-y-4">
-      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
-        <ul
-          className="flex flex-wrap -mb-px text-sm font-medium text-center"
-          id="default-tab"
-          data-tabs-toggle="#default-tab-content"
-          role="tablist"
-        >
-          <li className="me-2" role="presentation">
-            <button
-              className="inline-block p-4 border-b-2 rounded-t-lg"
-              id="profile-tab"
-              data-tabs-target="#profile"
-              type="button"
-              role="tab"
-              aria-controls="profile"
-              aria-selected="false"
-            >
-              Profile
-            </button>
-          </li>
-          <li className="me-2" role="presentation">
-            <button
-              className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              id="dashboard-tab"
-              data-tabs-target="#dashboard"
-              type="button"
-              role="tab"
-              aria-controls="dashboard"
-              aria-selected="false"
-            >
-              Dashboard
-            </button>
-          </li>
-          <li className="me-2" role="presentation">
-            <button
-              className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              id="settings-tab"
-              data-tabs-target="#settings"
-              type="button"
-              role="tab"
-              aria-controls="settings"
-              aria-selected="false"
-            >
-              Settings
-            </button>
-          </li>
-          <li role="presentation">
-            <button
-              className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-              id="contacts-tab"
-              data-tabs-target="#contacts"
-              type="button"
-              role="tab"
-              aria-controls="contacts"
-              aria-selected="false"
-            >
-              Contacts
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div id="default-tab-content">
-        <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="profile"
-          role="tabpanel"
-          aria-labelledby="profile-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{' '}
-            <strong className="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes
-            to control the content visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="dashboard"
-          role="tabpanel"
-          aria-labelledby="dashboard-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{' '}
-            <strong className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes
-            to control the content visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="settings"
-          role="tabpanel"
-          aria-labelledby="settings-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{' '}
-            <strong className="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes
-            to control the content visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="contacts"
-          role="tabpanel"
-          aria-labelledby="contacts-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{' '}
-            <strong className="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes
-            to control the content visibility and styling.
-          </p>
-        </div>
-      </div>
-      <form className="flex max-w-md flex-col gap-4 mx-auto">
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email1" value="Your email" />
-          </div>
-          <TextInput id="email1" type="email" placeholder="name@flowbite.com" required />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password1" value="Your password" />
-          </div>
-          <TextInput id="password1" type="password" required />
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
+      <Tabs aria-label="Login Form" style="default">
+        <Tabs.Item active title="Login with email and password" icon={HiUserCircle}>
+          <form
+            action="#"
+            method="post"
+            className="flex max-w-md flex-col gap-4 mx-auto"
+            onSubmit={e => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const url = new URL(springUtils.getOrigin());
+              const email = form.querySelector<HTMLInputElement>('input[name=email]')?.value || 'null';
+              const password = form.querySelector<HTMLInputElement>('input[name=password]')?.value || 'null';
+              url.pathname = '/login/' + email + '/' + password;
+              fetch(url)
+                .then(res => res.json())
+                .then((data: AjaxResponse) => {
+                  // setToastInfo({ title: data.error ? 'Gagal' : 'Sukses', description: data.message });
+                  // setShowToast(true);
+                });
+            }}
+          >
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="email1" value="Your email" />
+              </div>
+              <TextInput id="email1" name="email" type="email" placeholder="name@flowbite.com" required />
+            </div>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="password1" value="Your password" />
+              </div>
+              <TextInput id="password1" name="password" type="password" required />
+            </div>
+            <Button type="submit" color="blue">
+              Submit
+            </Button>
+          </form>
+        </Tabs.Item>
+        <Tabs.Item title="Login Using Token" icon={HiUserCircle}>
+          <form action="/login/:token" className="flex max-w-md flex-col gap-4 mx-auto" onSubmit={formHandler}>
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="token" value="Your token" />
+              </div>
+              <TextInput id="token" name="token" type="text" placeholder="xxxx-xxxx-xxxx-xxx" required />
+            </div>
+            <Button type="submit" color="blue">
+              Submit
+            </Button>
+          </form>
+        </Tabs.Item>
+      </Tabs>
     </main>
   );
+}
+
+function formHandler(e: FormEvent) {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  // console.log(formDataToJSON(new FormData(form)));
+  const requestConfig: AxiosRequestConfig = {
+    method: (form.method || 'GET').toUpperCase(),
+    withCredentials: false,
+    url: form.action
+  };
+  if (form.action.startsWith('/')) {
+    requestConfig.url = springUtils.getOrigin() + form.action;
+  }
+  if (requestConfig.method == 'POST') {
+    if (!requestConfig.headers) requestConfig.headers = {};
+    requestConfig.headers['Content-Type'] = 'application/json';
+    requestConfig.data = formDataToJSON(new FormData(form));
+  }
+  axios(requestConfig).then(res => {
+    console.log(res.data);
+  });
 }

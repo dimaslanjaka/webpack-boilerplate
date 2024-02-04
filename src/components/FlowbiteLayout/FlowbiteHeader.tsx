@@ -57,7 +57,8 @@ const FlowbiteHeader: FC<Record<string, never>> = function () {
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          <Navbar.Toggle />
+          {/* only show when top navbar when nav_top is set in _config.json */}
+          {projectConfig['nav_top'] && <Navbar.Toggle />}
           {/* <DarkThemeToggle /> */}
           <button
             aria-label="Toggle dark mode"
@@ -70,6 +71,7 @@ const FlowbiteHeader: FC<Record<string, never>> = function () {
             {themeMode == 'dark' ? <BiMoon className="h-5 w-5" /> : <BiSun className="h-5 w-5" />}
           </button>
         </div>
+        {/* only show when top navbar when nav_top is set in _config.json */}
         {projectConfig['nav_top'] && (
           <Navbar.Collapse>
             {Object.keys(projectConfig['nav_top']).map((name, index) => {
