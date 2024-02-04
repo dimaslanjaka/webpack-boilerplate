@@ -13,7 +13,7 @@ export default class springUtils {
         this.origin = new URL('http://localhost:8080');
       } else {
         // production
-        this.origin = new URL('http://23.94.85.180:8080');
+        this.origin = new URL('');
       }
     return this.origin;
   }
