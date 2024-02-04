@@ -2,11 +2,9 @@
 
 import FlowbiteToast from '@root/src/components/FlowbiteLayout/FlowbiteToast';
 import { saveForms } from '@root/src/components/formSaver';
-import { formDataToJSON } from '@root/src/utils/form';
 import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
-import axios, { AxiosRequestConfig } from 'axios';
 import { Button, Label, Tabs, TextInput } from 'flowbite-react';
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiUserCircle } from 'react-icons/hi';
 
 export default function Login() {
@@ -71,7 +69,28 @@ export default function Login() {
           </form>
         </Tabs.Item>
         <Tabs.Item title="Login Using Token" icon={HiUserCircle}>
-          <form action="/login/:token" className="flex max-w-md flex-col gap-4 mx-auto" onSubmit={formHandler}>
+          <form
+            action="#"
+            className="flex max-w-md flex-col gap-4 mx-auto"
+            onSubmit={e => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const url = new URL(springUtils.getOrigin());
+              const token = form.querySelector<HTMLInputElement>('input[name=token]')?.value || 'null';
+              url.pathname = '/login/' + token;
+              fetch(url)
+                .then(res => res.json())
+                .then((data: AjaxResponse) => {
+                  // set new toast info
+                  setToastInfo({
+                    title: data.error ? 'Gagal' : 'Sukses',
+                    description: data.message,
+                    iconClassName: 'user'
+                  });
+                  setShowToast(true);
+                });
+            }}
+          >
             <div>
               <div className="mb-2 block">
                 <Label htmlFor="token" value="Your token" />
@@ -93,26 +112,4 @@ export default function Login() {
       />
     </main>
   );
-}
-
-function formHandler(e: FormEvent) {
-  e.preventDefault();
-  const form = e.target as HTMLFormElement;
-  // console.log(formDataToJSON(new FormData(form)));
-  const requestConfig: AxiosRequestConfig = {
-    method: (form.method || 'GET').toUpperCase(),
-    withCredentials: false,
-    url: form.action
-  };
-  if (form.action.startsWith('/')) {
-    requestConfig.url = springUtils.getOrigin() + form.action;
-  }
-  if (requestConfig.method == 'POST') {
-    if (!requestConfig.headers) requestConfig.headers = {};
-    requestConfig.headers['Content-Type'] = 'application/json';
-    requestConfig.data = formDataToJSON(new FormData(form));
-  }
-  axios(requestConfig).then(res => {
-    console.log(res.data);
-  });
 }
