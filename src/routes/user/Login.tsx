@@ -19,6 +19,21 @@ export default function Login() {
     // default icon class name from parent
     iconClassName: 'user'
   });
+
+  const fetchHandler = function (fetch: Promise<Response>) {
+    fetch
+      .then(res => res.json())
+      .then((data: AjaxResponse) => {
+        // set new toast info
+        setToastInfo({
+          title: data.error ? 'Gagal' : 'Sukses',
+          description: data.message,
+          iconClassName: 'user'
+        });
+        setShowToast(true);
+      });
+  };
+
   useEffect(() => {
     saveForms();
   }, []);
@@ -38,17 +53,7 @@ export default function Login() {
               const email = form.querySelector<HTMLInputElement>('input[name=email]')?.value || 'null';
               const password = form.querySelector<HTMLInputElement>('input[name=password]')?.value || 'null';
               url.pathname = '/login/' + email + '/' + password;
-              fetch(url)
-                .then(res => res.json())
-                .then((data: AjaxResponse) => {
-                  // set new toast info
-                  setToastInfo({
-                    title: data.error ? 'Gagal' : 'Sukses',
-                    description: data.message,
-                    iconClassName: 'user'
-                  });
-                  setShowToast(true);
-                });
+              fetchHandler(fetch(url));
             }}
           >
             <div>
@@ -78,17 +83,7 @@ export default function Login() {
               const url = new URL(springUtils.getOrigin());
               const token = form.querySelector<HTMLInputElement>('input[name=token]')?.value || 'null';
               url.pathname = '/login/' + token;
-              fetch(url)
-                .then(res => res.json())
-                .then((data: AjaxResponse) => {
-                  // set new toast info
-                  setToastInfo({
-                    title: data.error ? 'Gagal' : 'Sukses',
-                    description: data.message,
-                    iconClassName: 'user'
-                  });
-                  setShowToast(true);
-                });
+              fetchHandler(fetch(url));
             }}
           >
             <div>
