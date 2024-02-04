@@ -1,4 +1,3 @@
-
 import { Breadcrumb, Button, Checkbox, Label, Modal, Table, Textarea, TextInput } from 'flowbite-react';
 import type { FC } from 'react';
 import { useState } from 'react';

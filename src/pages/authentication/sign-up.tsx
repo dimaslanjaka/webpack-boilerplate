@@ -1,4 +1,3 @@
-
 import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
 import type { FC } from 'react';
 
