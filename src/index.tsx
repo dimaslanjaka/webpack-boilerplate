@@ -8,6 +8,7 @@ import { ActualSidebar } from './components/FlowbiteLayout';
 import FlowbiteHeader from './components/FlowbiteLayout/FlowbiteHeader';
 import FlowbiteContext from './components/FlowbiteLayout/context/FlowbitContext';
 import { SidebarProvider } from './components/FlowbiteLayout/context/SidebarContext';
+import NoMatch from './components/NoMatch';
 import theme from './flowbite-theme';
 import './index.css';
 import Home from './layout/Home';
@@ -36,6 +37,7 @@ root.render(
                     <Route path="/" element={<Home />} index />
                     <Route path="/im3" element={<Im3Index />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="*" element={<NoMatch />} />
                   </Routes>
                 </div>
                 <div className="order-1">
