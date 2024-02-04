@@ -1,3 +1,5 @@
+import env from '@root/_env.json';
+
 export interface AjaxResponse {
   [key: string]: any;
   error: boolean;
@@ -13,7 +15,7 @@ export default class springUtils {
         this.origin = new URL('http://localhost:8080');
       } else {
         // production
-        this.origin = new URL('');
+        this.origin = new URL(env.BASE_API);
       }
     return this.origin;
   }
