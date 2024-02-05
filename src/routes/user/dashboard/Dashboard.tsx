@@ -1,21 +1,11 @@
-import convertToRupiah from '@root/src/utils/rupiah';
-import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
+import { UserInfo } from '@root/src/types/UserInfo';
+import springUtils from '@root/src/utils/springUtils';
 import axios from 'axios';
-import { Button, Table, Tabs } from 'flowbite-react';
+import { Button, Tabs } from 'flowbite-react';
 import React from 'react';
 import { HiAdjustments, HiUserCircle } from 'react-icons/hi';
 import { MdDashboard } from 'react-icons/md';
-
-interface UserInfo extends AjaxResponse {
-  isLogin: boolean;
-  name: string;
-  isAdmin: boolean;
-  saldo: number;
-  authorities: string[];
-  email: string;
-  point: number;
-  token: string;
-}
+import DashboardInfo from './DashboardInfo';
 
 /**
  * spring route `/me`
@@ -44,25 +34,7 @@ export default function Dashboard() {
       <Tabs aria-label="Tabs with icons" style="underline">
         <Tabs.Item active title="Profile" icon={HiUserCircle}>
           <div className="overflow-x-auto">
-            <Table>
-              <Table.Head></Table.Head>
-              <Table.Body className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Saldo</Table.Cell>
-                  <Table.Cell>{convertToRupiah(userInfo.saldo)}</Table.Cell>
-                </Table.Row>
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Poin</Table.Cell>
-                  <Table.Cell>{convertToRupiah(userInfo.point)}</Table.Cell>
-                </Table.Row>
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">Token</Table.Cell>
-                  <Table.Cell>
-                    <code>{userInfo.token}</code>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            </Table>
+            <DashboardInfo userInfo={userInfo} />
           </div>
         </Tabs.Item>
         <Tabs.Item title="Dashboard" icon={MdDashboard}>
