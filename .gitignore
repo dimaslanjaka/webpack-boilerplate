@@ -9,3 +9,4 @@ tmp/
 .env-bak
 yarn.lock
 _env.json
+.vscode/sftp*
