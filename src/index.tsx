@@ -13,6 +13,7 @@ import theme from './flowbite-theme';
 import './index.css';
 import Home from './layout/Home';
 import Im3Index from './routes/im3';
+import Dashboard from './routes/user/Dashboard';
 import Login from './routes/user/Login';
 
 const container = document.getElementById('root');
@@ -37,6 +38,7 @@ root.render(
                     <Route path="/" element={<Home />} index />
                     <Route path="/im3" element={<Im3Index />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<NoMatch />} />
                   </Routes>
                 </div>
