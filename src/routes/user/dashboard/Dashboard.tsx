@@ -6,6 +6,7 @@ import React from 'react';
 import { HiAdjustments, HiUserCircle } from 'react-icons/hi';
 import { MdDashboard } from 'react-icons/md';
 import DashboardInfo from './DashboardInfo';
+import DashboardProduct from './DashboardProducts';
 
 /**
  * spring route `/me`
@@ -37,9 +38,8 @@ export default function Dashboard() {
             <DashboardInfo userInfo={userInfo} />
           </div>
         </Tabs.Item>
-        <Tabs.Item title="Dashboard" icon={MdDashboard}>
-          This is <b>Dashboard tab's associated content</b>. Clicking another tab will toggle the visibility of this one
-          for the next. The tab JavaScript swaps classes to control the content visibility and styling.
+        <Tabs.Item title="Products" icon={MdDashboard}>
+          <DashboardProduct userInfo={userInfo} />
         </Tabs.Item>
         <Tabs.Item title="Settings" icon={HiAdjustments}>
           <Button color="red" title="Change password">

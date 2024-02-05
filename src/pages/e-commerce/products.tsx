@@ -287,7 +287,7 @@ const DeleteProductModal: FC = function () {
   );
 };
 
-const ProductsTable: FC = function () {
+export const ProductsTable: FC = function () {
   return (
     <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
       <Table.Head className="bg-gray-100 dark:bg-gray-700">
