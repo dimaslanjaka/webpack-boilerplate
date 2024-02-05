@@ -3,6 +3,7 @@
 import FlowbiteToast from '@root/src/components/FlowbiteLayout/FlowbiteToast';
 import { saveForms } from '@root/src/components/formSaver';
 import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
+import axios from 'axios';
 import { Button, Label, Tabs, TextInput } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { HiUserCircle } from 'react-icons/hi';
@@ -20,27 +21,20 @@ export default function Login() {
     iconClassName: 'user'
   });
 
-  const fetchHandler = function (fetch: Promise<Response>) {
-    fetch
-      .then(res => res.json())
-      .then((data: AjaxResponse) => {
-        // set new toast info
-        setToastInfo({
-          title: data.error ? 'Gagal' : 'Sukses',
-          description: data.message,
-          iconClassName: 'user'
-        });
-        setShowToast(true);
-        if (!data.error) location.pathname = '/dashboard';
-      })
-      .catch(e => {
-        setToastInfo({
-          title: 'Koneksi Gagal',
-          description: e.message,
-          iconClassName: 'user'
-        });
-        setShowToast(true);
-      });
+  const fetchHandler = async function (url: string | URL) {
+    const login: { data: AjaxResponse } = await axios({
+      url: new String(url).toString(),
+      withCredentials: true,
+      method: 'GET'
+    });
+    // set new toast info
+    setToastInfo({
+      title: login.data.error ? 'Gagal' : 'Sukses',
+      description: login.data.message,
+      iconClassName: 'user'
+    });
+    setShowToast(true);
+    if (!login.data.error) location.pathname = '/dashboard';
   };
 
   useEffect(() => {
@@ -62,7 +56,7 @@ export default function Login() {
               const email = form.querySelector<HTMLInputElement>('input[name=email]')?.value || 'null';
               const password = form.querySelector<HTMLInputElement>('input[name=password]')?.value || 'null';
               url.pathname = '/login/' + email + '/' + password;
-              fetchHandler(fetch(url));
+              fetchHandler(url);
             }}
           >
             <div>
@@ -92,7 +86,7 @@ export default function Login() {
               const url = new URL(springUtils.getOrigin());
               const token = form.querySelector<HTMLInputElement>('input[name=token]')?.value || 'null';
               url.pathname = '/login/' + token;
-              fetchHandler(fetch(url));
+              fetchHandler(url);
             }}
           >
             <div>
