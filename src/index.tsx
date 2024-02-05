@@ -13,8 +13,8 @@ import theme from './flowbite-theme';
 import './index.css';
 import Home from './layout/Home';
 import Im3Index from './routes/im3';
-import Dashboard from './routes/user/Dashboard';
 import Login from './routes/user/Login';
+import Dashboard from './routes/user/dashboard/Dashboard';
 
 const container = document.getElementById('root');
 
