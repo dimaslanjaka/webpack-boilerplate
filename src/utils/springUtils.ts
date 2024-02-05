@@ -1,7 +1,7 @@
 import env from '@root/_env.json';
+import { emptyInterface } from '../types/emptyInterface';
 
-export interface AjaxResponse {
-  [key: string]: any;
+export interface AjaxResponse extends emptyInterface {
   error: boolean;
   message: string;
 }
