@@ -6,6 +6,9 @@ export interface AjaxResponse {
   message: string;
 }
 
+/**
+ * spring utility using .env file to populate _env.json
+ */
 export default class springUtils {
   private static origin: URL;
   /**
