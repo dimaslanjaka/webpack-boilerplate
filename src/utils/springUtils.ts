@@ -1,4 +1,6 @@
 import env from '@root/_env.json';
+import axios from 'axios';
+import { UserInfo } from '../types/UserInfo';
 import { emptyInterface } from '../types/emptyInterface';
 
 export interface AjaxResponse extends emptyInterface {
@@ -11,6 +13,7 @@ export interface AjaxResponse extends emptyInterface {
  */
 export default class springUtils {
   private static origin: URL;
+  private static userInfo: UserInfo;
   /**
    * get url origin of backend
    * @returns URL instance without pathname
@@ -43,5 +46,21 @@ export default class springUtils {
           }
         }
       });
+  }
+
+  public static async fetchUserInfo() {
+    if (typeof this.userInfo == 'undefined')
+      await axios({
+        url: this.getURL('/me').toString(),
+        withCredentials: true,
+        method: 'GET'
+      }).then(res => {
+        if (res.data.error) {
+          location.pathname = '/login';
+        } else {
+          this.userInfo = res.data;
+        }
+      });
+    return this.userInfo;
   }
 }

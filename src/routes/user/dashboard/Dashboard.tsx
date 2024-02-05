@@ -1,6 +1,5 @@
 import { UserInfo } from '@root/src/types/UserInfo';
 import springUtils from '@root/src/utils/springUtils';
-import axios from 'axios';
 import { Button, Tabs } from 'flowbite-react';
 import React from 'react';
 import { HiAdjustments, HiUserCircle } from 'react-icons/hi';
@@ -14,21 +13,9 @@ import DashboardProduct from './DashboardProducts';
  */
 export default function Dashboard() {
   const [userInfo, setUserInfo] = React.useState({} as UserInfo);
-  const fetchUserInfo = () =>
-    axios({
-      url: springUtils.getURL('/me').toString(),
-      withCredentials: true,
-      method: 'GET'
-    }).then(res => {
-      if (res.data.error) {
-        location.pathname = '/login';
-      } else {
-        setUserInfo(res.data);
-      }
-    });
   React.useEffect(() => {
     document.title = 'Dashboard';
-    fetchUserInfo();
+    springUtils.fetchUserInfo().then(setUserInfo);
   }, []);
   return (
     <main className="dark:text-white">
