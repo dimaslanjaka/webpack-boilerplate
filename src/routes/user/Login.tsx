@@ -34,7 +34,9 @@ export default function Login() {
       iconClassName: 'user'
     });
     setShowToast(true);
-    if (!login.data.error) location.pathname = '/dashboard';
+    if (!login.data.error) {
+      location.href = document.referrer || '/dashboard';
+    }
   };
 
   useEffect(() => {
