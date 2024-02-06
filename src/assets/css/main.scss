@@ -147,6 +147,26 @@ i:not([class^='fa-']) {
   font-family: 'Cera Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
+/* disable element and their childs */
+.disable,
+.disabled {
+  /* Note: pointer-events not supported by IE10 and under */
+  pointer-events: none;
+  opacity: 0.4;
+
+  /* Disable scrolling on child elements */
+  div,
+  textarea {
+    overflow: hidden;
+  }
+
+  .show,
+  .show * {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
 // #app {
 //   height: 100%;
 //   width: 100%;

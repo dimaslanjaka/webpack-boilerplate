@@ -30,10 +30,15 @@ export default function DashboardProduct({ userInfo }: { userInfo: UserInfo }) {
       {products.map(product => {
         return (
           <div
-            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative"
-            onClick={() => (location.pathname = `/${product.isp}/paket/buy?id=${product.id}`)}
+            className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative ${userInfo.saldo < product.price ? 'disabled' : ''}`}
+            onClick={() => (location.pathname = `/${product.isp}/gift-otp?id=${product.id}`)}
             key={product.id}
           >
+            {userInfo.saldo < product.price && (
+              <div className="show text-[#FF0000] z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                Saldo anda tidak mencukupi
+              </div>
+            )}
             <div
               className="absolute top-0 left-0 w-40 h-6 text-left rounded-tl-lg rounded-br-lg"
               style={{
