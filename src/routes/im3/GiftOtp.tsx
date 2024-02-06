@@ -79,15 +79,32 @@ export default class GiftOtp extends React.Component<any, IState> {
             <blockquote className="text-center text-sm">Nomor HP akan otomatis di format ke 6285xxxxxxxxx</blockquote>
           </div>
 
-          <div className="mb-5">
-            <button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-              <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                Request OTP
-              </span>
-            </button>
-            <blockquote className="text-sm text-center">
-              Kode OTP akan dikirimkan ke <b>nomor HP anda</b>
-            </blockquote>
+          <div className="grid grid-rows-1 grid-flow-col grid-cols-2 gap-4">
+            <div className="mb-5">
+              <button
+                className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-yellow-600 to-blue-500 group-hover:from-yellow-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                onClick={e => {
+                  e.preventDefault();
+                }}
+              >
+                <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  Cek Paket
+                </span>
+              </button>
+              <blockquote className="text-sm text-center">
+                <b>Cek Paket</b> dulu lalu <b>Request OTP</b>
+              </blockquote>
+            </div>
+            <div className="mb-5">
+              <button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                <span className="w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                  Request OTP
+                </span>
+              </button>
+              <blockquote className="text-sm text-center">
+                Kode OTP akan dikirimkan ke <b>nomor HP anda</b>
+              </blockquote>
+            </div>
           </div>
 
           <div className="grid grid-rows-1 grid-flow-col grid-cols-2 gap-4">
