@@ -1,3 +1,5 @@
+import { emptyInterface } from '../types/emptyInterface';
+
 /**
  * Create detailed cookie
  * @param name
@@ -83,6 +85,7 @@ export function getCookie(name: string) {
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
+    if (!c) continue;
     while (c.charAt(0) == ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
@@ -112,9 +115,9 @@ export function getCookies(
 ): Record<string, any> {
   const { sort = false, skipKey = [] } = options;
   const pairs = document.cookie.split(';');
-  const cookies = {};
+  const cookies = {} as emptyInterface;
   for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i].split('=');
+    const pair = (pairs[i] || '').split('=');
     cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
   }
 
@@ -127,7 +130,7 @@ export function getCookies(
 
   // do sorting
   if (sort) {
-    const sorted = {};
+    const sorted = {} as emptyInterface;
 
     const sortKeys = Object.keys(cookies).sort(function (a, b) {
       return a === b ? 0 : a < b ? -1 : 1;
@@ -165,6 +168,7 @@ export function deleteAllCookies() {
 
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i];
+    if (!cookie) continue;
     const eqPos = cookie.indexOf('=');
     const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
@@ -185,7 +189,7 @@ export function getCurrentPageId() {
       1
     );
   }
-  if (!window.pageId) window.pageId = getCookie('___current_id');
+  if (!window.pageId) window.pageId = getCookie('___current_id') || '';
   return window.pageId;
 }
 
