@@ -110,6 +110,7 @@ export default function Login() {
         title={toastInfo.title}
         description={toastInfo.description}
         iconClassName={toastInfo.iconClassName}
+        autoHide={true}
       />
     </main>
   );

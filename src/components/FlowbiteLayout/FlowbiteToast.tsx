@@ -6,7 +6,7 @@ interface FlowbiteToastProps {
   /** show toast indicator */
   showToast: boolean;
   /** parent state to show/hide toast indicator */
-  handler: (showToast: boolean) => any;
+  handler: (showToast: boolean) => any | ((...args: any[]) => any);
   /** toast title */
   title?: string;
   /** toast description */
@@ -21,9 +21,7 @@ const FlowbiteToast: React.FC<FlowbiteToastProps> = props => {
   React.useEffect(() => {
     if (props.showToast && props.autoHide) {
       // auto hide toast
-      setTimeout(() => {
-        props.handler(false);
-      }, 3000);
+      setTimeout(() => props.handler(false), 3000);
     }
   });
   return (
