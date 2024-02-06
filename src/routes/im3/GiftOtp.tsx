@@ -21,9 +21,9 @@ export default class GiftOtp extends React.Component<any, IState> {
     saveForms();
   }
 
-  onChange = (input: any) => {
+  onChange = (input: string) => {
     this.setState({ otpCode: input });
-    console.log('Input changed', input);
+    // console.log('Input changed', input);
   };
 
   onKeyPress = (_button: any) => {
@@ -91,6 +91,7 @@ export default class GiftOtp extends React.Component<any, IState> {
                 placeholder="012341"
                 required
                 value={this.state.otpCode}
+                onChange={e => this.setState({ otpCode: e.target.value })}
               />
             </div>
             <div className="mb-5 pt-7">
@@ -101,7 +102,7 @@ export default class GiftOtp extends React.Component<any, IState> {
               </button>
             </div>
           </div>
-          <div className="dark:text-dark text-dark">
+          <div className="dark:text-dark text-dark invisible md:visible">
             <Keyboard onChange={this.onChange} onKeyPress={this.onKeyPress} />
           </div>
         </div>
