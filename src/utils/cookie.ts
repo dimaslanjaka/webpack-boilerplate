@@ -80,7 +80,8 @@ export function setCookieMins(
   });
 }
 
-export function getCookie(name: string) {
+export function getCookie<T>(name: string, defaultValue?: T) {
+  if (!defaultValue) defaultValue = null as T;
   const nameEQ = name + '=';
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -89,7 +90,7 @@ export function getCookie(name: string) {
     while (c.charAt(0) == ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
   }
-  return null;
+  return defaultValue;
 }
 
 // export const createCookieExpires = ({ mins = 0, hours = 0, week = 0, month = 0 }) => {
@@ -180,7 +181,7 @@ export function deleteAllCookies() {
  * @returns
  */
 export function getCurrentPageId() {
-  let ___current_id = getCookie('___current_id');
+  let ___current_id = getCookie<string>('___current_id');
   if (!___current_id) {
     ___current_id = Math.random()
       .toString(36)
