@@ -1,5 +1,7 @@
+import Constant from '@root/src/Constant';
 import { saveForms } from '@root/src/components/formSaver';
 import { emptyInterface } from '@root/src/types/emptyInterface';
+import { getCookie, setCookie } from '@root/src/utils';
 import React from 'react';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
@@ -46,6 +48,11 @@ export default class GiftOtp extends React.Component<any, IState> {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="6285xxxxxxxxx"
                 required
+                defaultValue={getCookie(Constant.msisdn, '')}
+                onChange={e => {
+                  const input = e.target as HTMLInputElement;
+                  setCookie(Constant.msisdn, input.value, 900);
+                }}
               />
             </div>
             <div className="mb-5">
@@ -59,6 +66,11 @@ export default class GiftOtp extends React.Component<any, IState> {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="6285xxxxxxxxx"
                 required
+                defaultValue={getCookie(Constant.to_msisdn, '')}
+                onChange={e => {
+                  const input = e.target as HTMLInputElement;
+                  setCookie(Constant.to_msisdn, input.value, 900, location.pathname);
+                }}
               />
             </div>
           </div>
