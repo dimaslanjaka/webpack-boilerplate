@@ -84,7 +84,9 @@ export default class GiftOtp extends React.Component<any, any> {
               </button>
             </div>
           </div>
-          <Keyboard onChange={this.onChange} onKeyPress={this.onKeyPress} />
+          <div className="dark:text-dark text-dark">
+            <Keyboard onChange={this.onChange} onKeyPress={this.onKeyPress} />
+          </div>
         </div>
       </main>
     );

@@ -171,6 +171,13 @@ i:not([class^='fa-']) {
   }
 }
 
+.hg-button,
+.hg-functionBtn * {
+  opacity: 1;
+  color: black;
+  display: inline-block;
+}
+
 // #app {
 //   height: 100%;
 //   width: 100%;
