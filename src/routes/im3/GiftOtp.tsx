@@ -1,17 +1,33 @@
+import { saveForms } from '@root/src/components/formSaver';
+import { emptyInterface } from '@root/src/types/emptyInterface';
 import React from 'react';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
-export default class GiftOtp extends React.Component<any, any> {
+interface IState extends emptyInterface {
+  otpCode: string;
+}
+
+export default class GiftOtp extends React.Component<any, IState> {
   constructor(props: any) {
     super(props);
+    this.state = {
+      otpCode: ''
+    };
   }
+
+  componentDidMount(): void {
+    document.title = 'Gift | IM3';
+    saveForms();
+  }
+
   onChange = (input: any) => {
+    this.setState({ otpCode: input });
     console.log('Input changed', input);
   };
 
-  onKeyPress = (button: any) => {
-    console.log('Button pressed', button);
+  onKeyPress = (_button: any) => {
+    // console.log('Button pressed', button);
   };
 
   render(): React.ReactNode {
@@ -74,6 +90,7 @@ export default class GiftOtp extends React.Component<any, any> {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="012341"
                 required
+                value={this.state.otpCode}
               />
             </div>
             <div className="mb-5 pt-7">
