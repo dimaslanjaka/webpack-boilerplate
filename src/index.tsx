@@ -13,6 +13,7 @@ import theme from './flowbite-theme';
 import './index.css';
 import Home from './layout/Home';
 import Im3Index from './routes/im3';
+import GiftOtp from './routes/im3/GiftOtp';
 import Login from './routes/user/Login';
 import Dashboard from './routes/user/dashboard/Dashboard';
 
@@ -37,6 +38,7 @@ root.render(
                   <Routes>
                     <Route path="/" element={<Home />} index />
                     <Route path="/im3" element={<Im3Index />} />
+                    <Route path="/im3/gift-otp/:id" element={<GiftOtp />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<NoMatch />} />

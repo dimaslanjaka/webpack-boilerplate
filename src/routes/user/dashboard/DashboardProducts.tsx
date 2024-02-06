@@ -31,7 +31,7 @@ export default function DashboardProduct({ userInfo }: { userInfo: UserInfo }) {
         return (
           <div
             className={`max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative ${userInfo.saldo < product.price ? 'disabled' : ''}`}
-            onClick={() => (location.pathname = `/${product.isp}/gift-otp?id=${product.id}`)}
+            onClick={() => (location.href = `/${product.isp}/gift-otp/${product.id}`)}
             key={product.id}
           >
             {userInfo.saldo < product.price && (
