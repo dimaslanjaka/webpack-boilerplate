@@ -180,16 +180,14 @@ export function deleteAllCookies() {
  * @returns
  */
 export function getCurrentPageId() {
-  if (!getCookie('___current_id')) {
-    setCookie(
-      '___current_id',
-      Math.random()
-        .toString(36)
-        .substring(2, 7 + 2),
-      1
-    );
+  let ___current_id = getCookie('___current_id');
+  if (!___current_id) {
+    ___current_id = Math.random()
+      .toString(36)
+      .substring(2, 7 + 2);
+    setCookie('___current_id', ___current_id, 1);
   }
-  if (!window.pageId) window.pageId = getCookie('___current_id') || '';
+  if (!window.pageId) window.pageId = ___current_id as string;
   return window.pageId;
 }
 
