@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [userInfo, setUserInfo] = React.useState({} as UserInfo);
   React.useEffect(() => {
     document.title = 'Dashboard';
+    // springUtils.checkLogin();
     springUtils.fetchUserInfo().then(setUserInfo);
   }, []);
   return (

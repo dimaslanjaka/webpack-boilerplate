@@ -11,7 +11,10 @@
       "icon": "terminal-powershell"
     },
     "Command Prompt": {
-      "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
       "args": [],
       "icon": "terminal-cmd"
     },
@@ -20,7 +23,10 @@
     },
     "Cygwin": {
       "path": "C:\\cygwin64\\bin\\bash.exe",
-      "args": ["--login", "-i"],
+      "args": [
+        "--login",
+        "-i"
+      ],
       "env": {
         "CHERE_INVOKING": "1"
       }

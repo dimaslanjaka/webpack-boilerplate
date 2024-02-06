@@ -4,7 +4,7 @@ import React from 'react';
 export class Im3Index extends React.Component<any, any> {
   static displayName: string;
   componentDidMount(): void {
-    springUtils.checkLogin();
+    springUtils.fetchUserInfo();
   }
   render(): React.ReactNode {
     return (

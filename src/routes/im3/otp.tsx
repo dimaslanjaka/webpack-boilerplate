@@ -3,7 +3,7 @@ import React from 'react';
 
 export default class im3Otp extends React.Component<any, any> {
   componentDidMount(): void {
-    springUtils.checkLogin();
+    springUtils.fetchUserInfo();
   }
   render() {
     return <></>;

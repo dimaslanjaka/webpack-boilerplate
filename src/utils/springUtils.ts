@@ -34,19 +34,6 @@ export default class springUtils {
     if (typeof pathname == 'string') url.pathname = pathname;
     return url;
   }
-  public static checkLogin(redirect = true) {
-    const url = this.getOrigin();
-    url.pathname = '/me';
-    fetch(url, { method: 'POST' })
-      .then(res => res.json())
-      .then((data: AjaxResponse) => {
-        if (data.error) {
-          if (data.message.toLowerCase().includes('login')) {
-            if (redirect) location.href = '/login';
-          }
-        }
-      });
-  }
 
   public static async fetchUserInfo() {
     if (typeof this.userInfo == 'undefined')

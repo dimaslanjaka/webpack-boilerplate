@@ -1,17 +1,9 @@
 import { UserInfo } from '@root/src/types/UserInfo';
-import springUtils, { AjaxResponse } from '@root/src/utils/springUtils';
+import convertToRupiah from '@root/src/utils/rupiah';
+import springUtils from '@root/src/utils/springUtils';
 import axios, { AxiosResponse } from 'axios';
-import { Table } from 'flowbite-react';
 import React from 'react';
-
-interface Paket extends AjaxResponse {
-  data: {
-    isp: string;
-    id: number;
-    name: string;
-    description: string;
-  }[];
-}
+import { Paket } from './types';
 
 export default function DashboardProduct({ userInfo }: { userInfo: UserInfo }) {
   const [products, setProducts] = React.useState([] as Paket['data']);
@@ -34,39 +26,40 @@ export default function DashboardProduct({ userInfo }: { userInfo: UserInfo }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="relative overflow-x-auto">
-      <Table>
-        <Table.Head className="bg-gray-100 dark:bg-gray-700">
-          <Table.HeadCell>Product Name</Table.HeadCell>
-          <Table.HeadCell>ISP</Table.HeadCell>
-          <Table.HeadCell>Price</Table.HeadCell>
-          <Table.HeadCell>Actions</Table.HeadCell>
-        </Table.Head>
-        <Table.Body className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
-          {products.map(product => {
-            return (
-              <Table.Row className="hover:bg-gray-100 dark:hover:bg-gray-700" key={product.id}>
-                <Table.Cell className="whitespace-nowrap p-4 text-sm font-normal text-gray-500 dark:text-gray-400">
-                  <div className="text-base font-semibold text-gray-900 dark:text-white">{product.name}</div>
-                  <div className="text-sm font-normal text-gray-500 dark:text-gray-400">{product.description}</div>
-                </Table.Cell>
-                <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
-                  {product.isp.toUpperCase()}
-                </Table.Cell>
-                <Table.Cell className="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
-                  #194556
-                </Table.Cell>
-                <Table.Cell className="space-x-2 whitespace-nowrap p-4">
-                  <div className="flex items-center gap-x-3">
-                    {/* <EditProductModal />
-                <DeleteProductModal /> */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {products.map(product => {
+        return (
+          <div
+            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative"
+            onClick={() => (location.pathname = `/${product.isp}/paket/buy?id=${product.id}`)}
+            key={product.id}
+          >
+            <div
+              className="absolute top-0 left-0 w-40 h-6 text-left rounded-tl-lg rounded-br-lg"
+              style={{
+                backgroundImage: `url('https://im3-img.indosatooredoo.com/indosatassets/images/icons/icon-512x512.png')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            ></div>
+            <div className="absolute top-0 right-0 w-40 text-right">
+              <span className="pr-2 text-dark font-bold">{product.type}</span>
+            </div>
+            <div className="py-7 pl-2 pb-2 pr-1">
+              <a href="#">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h2 className="text-dark">{product.name}</h2>
+                    <p className="text-sm w-60">{product.description}</p>
                   </div>
-                </Table.Cell>
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-      </Table>
+                  <p>{convertToRupiah(product.price)}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
