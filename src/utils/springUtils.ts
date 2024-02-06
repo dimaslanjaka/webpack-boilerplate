@@ -28,7 +28,7 @@ export default class springUtils {
    * @param pathname pathname of backend
    * @returns URL instance
    */
-  public static getURL(pathname?: string) {
+  public static getUrl(pathname?: string) {
     this.getOrigin();
     const url = this.origin;
     if (typeof pathname == 'string') url.pathname = pathname;
@@ -38,7 +38,7 @@ export default class springUtils {
   public static async fetchUserInfo() {
     if (typeof this.userInfo == 'undefined')
       await axios({
-        url: this.getURL('/me').toString(),
+        url: this.getUrl('/me').toString(),
         withCredentials: true,
         method: 'GET'
       }).then(res => {

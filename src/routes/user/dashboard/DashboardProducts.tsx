@@ -9,7 +9,7 @@ export default function DashboardProduct({ userInfo }: { userInfo: UserInfo }) {
   const [products, setProducts] = React.useState([] as Paket['data']);
   React.useEffect(() => {
     axios
-      .post(springUtils.getURL('/im3/paket/list').toString(), {}, { withCredentials: true })
+      .post(springUtils.getUrl('/im3/paket/list').toString(), {}, { withCredentials: true })
       .then((res: AxiosResponse<Paket>) => {
         // console.log(res.data.data);
         // filter duplicate object
