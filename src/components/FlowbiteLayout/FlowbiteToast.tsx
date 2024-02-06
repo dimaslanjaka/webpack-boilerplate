@@ -13,15 +13,15 @@ interface FlowbiteToastProps {
   description?: string;
   /** fontawesome classname without fa- */
   iconClassName?: string;
-  /** auto hide */
-  autoHide?: boolean;
+  /** auto hide in milliseconds, by default 3s */
+  autoHide?: boolean | number;
 }
 
 const FlowbiteToast: React.FC<FlowbiteToastProps> = props => {
   React.useEffect(() => {
     if (props.showToast && props.autoHide) {
       // auto hide toast
-      setTimeout(() => props.handler(false), 3000);
+      setTimeout(() => props.handler(false), typeof props.autoHide == 'number' ? props.autoHide : 3000);
     }
   });
   return (
