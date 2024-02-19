@@ -1,0 +1,35 @@
+<section class="px-6 mb-8 mx-auto">
+  <div id="collageResult"></div>
+  <!-- <div class="flex flex-row min-h-screen justify-center items-center">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="collageResult"></div>
+  </div> -->
+</section>
+
+<script>
+  const collageResult = document.getElementById('collageResult');
+  fetch('/get-collage.php')
+    .then(res => res.json())
+    .then(images => {
+      const chunks = array_chunk(images, 3);
+      const makeInner = chunks.map(chunk => {
+        return chunk
+          .map(
+            item => `
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="${item}" alt="" />
+        </div>`
+          )
+          .join('');
+      });
+      const makeOuter = makeInner.map(str => `<div class="grid gap-4">${str}</div>`).join('');
+      const makeWrapper = `<div class="grid grid-cols-2 md:grid-cols-${chunks.length} gap-${chunks.length}">${makeOuter}</div>`;
+      collageResult.innerHTML = makeWrapper;
+    });
+  function array_chunk(arr, size) {
+    let out = [];
+    for (let i = 0; i < arr.length; i = i + size) {
+      out.push(arr.slice(i, i + size));
+    }
+    return out;
+  }
+</script>

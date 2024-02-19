@@ -1,0 +1,12 @@
+dist
+node_modules
+*.tsbuildinfo
+yarn-error.log
+.yarn/cache
+.env
+tmp/
+.yarn/*gz
+.env-bak
+yarn.lock
+_env.json
+.vscode/sftp*

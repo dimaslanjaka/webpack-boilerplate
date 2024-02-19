@@ -1,0 +1,8 @@
+html, body {
+  /* minimum content height */
+  min-height: 200vh;
+}
+
+.z-2000 {
+  z-index: 2000;
+}
