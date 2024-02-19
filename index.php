@@ -25,13 +25,14 @@
   <main id="content" class="mt-4 relative">
     <!-- main content -->
     <?php include(__DIR__ . '/source/intro.html'); ?>
+    <!-- fitur -->
     <?php include(__DIR__ . '/source/feature.html'); ?>
-    <?php include(__DIR__ . '/source/testimonial.html'); ?>
-    <?php include(__DIR__ . '/source/offer.html'); ?>
-
     <!-- collage gallery  -->
     <?php include(__DIR__ . '/source/collage.html'); ?>
-
+    <!-- testimoni -->
+    <?php include(__DIR__ . '/source/testimonial.html'); ?>
+    <!-- penawaran -->
+    <?php include(__DIR__ . '/source/offer.html'); ?>
     <!-- bottom nav -->
     <?php include(__DIR__ . '/source/navbar-bottom.html'); ?>
   </main>
