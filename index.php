@@ -19,14 +19,17 @@
   <!-- navbar -->
   <?php include(__DIR__ . '/source/navbar.html'); ?>
 
-  <main id="content" class="mt-4">
-    <!-- intro -->
+  <main id="content" class="mt-4 relative">
+    <!-- main content -->
     <?php include(__DIR__ . '/source/intro.html'); ?>
     <?php include(__DIR__ . '/source/feature.html'); ?>
     <?php include(__DIR__ . '/source/testimonial.html'); ?>
 
-    <!-- collage  -->
+    <!-- collage gallery  -->
     <?php include(__DIR__ . '/source/collage.html'); ?>
+
+    <!-- bottom nav -->
+    <?php include(__DIR__ . '/source/navbar-bottom.html'); ?>
   </main>
 
   <!-- base theme -->
