@@ -27,6 +27,7 @@
     <?php include(__DIR__ . '/source/intro.html'); ?>
     <?php include(__DIR__ . '/source/feature.html'); ?>
     <?php include(__DIR__ . '/source/testimonial.html'); ?>
+    <?php include(__DIR__ . '/source/offer.html'); ?>
 
     <!-- collage gallery  -->
     <?php include(__DIR__ . '/source/collage.html'); ?>
